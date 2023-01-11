@@ -3,6 +3,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+extension ColorExtension on String {
+  toColor() {
+    var hexString = this;
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+}
+
 class MyButton extends StatelessWidget{
   
   final Function()? onTap;
@@ -14,10 +24,12 @@ Widget build(BuildContext context){
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      padding: const EdgeInsets.all(25),
+      height: 50,
+      width: MediaQuery.of(context).size.width - 30,
+      //padding: const EdgeInsets.all(25),
       margin: const EdgeInsets.symmetric(horizontal: 25.0),
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: '#13274F'.toColor(),
         borderRadius: BorderRadius.circular(8.0)
       ),
       child: const Center(
