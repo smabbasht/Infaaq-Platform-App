@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infaaq_app/dashboard.dart';
 
 extension ColorExtension on String {
   toColor() {
@@ -15,14 +16,16 @@ extension ColorExtension on String {
 
 class MyButton extends StatelessWidget{
   
-  final Function()? onTap;
+  final void Function()? onTap;
   
   const MyButton({super.key, required this.onTap});
 
 @override
 Widget build(BuildContext context){
   return GestureDetector(
-    onTap: onTap,
+    onTap: (() => {
+      Navigator.push(context, MaterialPageRoute(builder: ((context) =>  Dashboard()),),)
+    }),
     child: Container(
       height: 50,
       width: MediaQuery.of(context).size.width - 30,

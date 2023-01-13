@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'components/text_field.dart';
 import 'components/my_button.dart';
+import 'components/square_tile.dart';
+import 'dashboard.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void signUserIn() {}
+  void signUserIn() {
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +17,23 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.grey[100],
         body: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               //logo
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
 
+              
               Container(
+                
+                  //height: 100,
+                  //width: MediaQuery.of(context).size.width
                   padding: const EdgeInsets.all(0),
-                  height: 250.0,
-                  width: 250.0,
-                  child: Image.asset('assets/images/infaaq_logo.png')),
+                  height: 150.0,
+                  width: 150.0,
+                  child: Image.asset('assets/images/infaaq_logo.png')
+                  ),
 
               //welcome back, you've been missed
               const SizedBox(
@@ -83,19 +92,72 @@ class LoginPage extends StatelessWidget {
               ),
               
               //sign in btn
+              
               const SizedBox(
                 height: 25.0,
               ),
 
-              MyButton(onTap: signUserIn)
+              MyButton(onTap: signUserIn),
+
+              const SizedBox(height: 10,),
 
               //or continue with
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
+                      child: Text("Or continue with")
+                      ),
+                    
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
+              const SizedBox(height: 10,),
               //google sign in
 
+              Row(
+                
+                mainAxisAlignment: MainAxisAlignment.center,
+
+                children: const [
+                  
+                  SquareTile(imagePath: 'assets/images/google.png'),
+
+                  SizedBox(width: 25,),
+
+                  SquareTile(imagePath: 'assets/images/facebook.png')
+                  
+                  
+                ],
+              ),
+
+              const SizedBox(height: 20,),
+              
               //not a member
 
-              //column
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Not a member?'),
+                  SizedBox(width: 5,),
+                  Text('Register Now')
+                ],
+              )
             ],
           ),
         ));
