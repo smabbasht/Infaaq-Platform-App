@@ -16,15 +16,19 @@ extension ColorExtension on String {
 
 class MyButton extends StatelessWidget{
   
-  final void Function()? onTap;
+  final void Function() onTap;
+  final String btnName; 
   
-  const MyButton({super.key, required this.onTap});
+  const MyButton({super.key, required this.onTap, required this.btnName});
 
 @override
 Widget build(BuildContext context){
   return GestureDetector(
     onTap: (() => {
-      Navigator.push(context, MaterialPageRoute(builder: ((context) =>  Dashboard()),),)
+      onTap()
+      // if (btnName == 'Sign In'){
+      // Navigator.push(context, MaterialPageRoute(builder: ((context) =>  Dashboard()),),)
+      // }
     }),
     child: Container(
       height: 50,
@@ -35,10 +39,10 @@ Widget build(BuildContext context){
         color: '#13274F'.toColor(),
         borderRadius: BorderRadius.circular(8.0)
       ),
-      child: const Center(
+      child: Center(
         child: Text(
-          'Sign In',
-          style: TextStyle(
+          btnName,
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 16,
