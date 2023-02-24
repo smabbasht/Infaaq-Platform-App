@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "312494685862",
+    "project_id": "infaaq-donations-app",
+    "storage_bucket": "infaaq-donations-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312494685862:android:9373973fd5fe19208cfe67",
+        "android_client_info": {
+          "package_name": "com.example.infaaq_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312494685862-johl61srjlbvc4g5vesee13rbh3o0g1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infaaq_app",
+            "certificate_hash": "5e3b6c3438abaac18934f764bec663a08d27b955"
+          }
+        },
+        {
+          "client_id": "312494685862-35df4dekh4atva4bc8i7vgfm5gku4n72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ_X0Q8F8Yjiza8gzno13V1rLxQ2aofGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312494685862-35df4dekh4atva4bc8i7vgfm5gku4n72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

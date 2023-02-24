@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infaaq_app/donate_page.dart';
 
 class DashboardButton extends StatefulWidget{
   
@@ -8,9 +7,9 @@ class DashboardButton extends StatefulWidget{
   final String imagePath;
   final void Function() onTap;
   
-  DashboardButton({super.key, required this.buttonName, required this.imagePath, required this.onTap});
+  const DashboardButton({super.key, required this.buttonName, required this.imagePath, required this.onTap});
   
-  _DashboardButton createState() => _DashboardButton(buttonName: buttonName, imagePath: imagePath, onTap: onTap);
+  State<DashboardButton> createState() => _DashboardButton(buttonName: buttonName, imagePath: imagePath, onTap: onTap);
 
 
 }
@@ -30,7 +29,6 @@ class _DashboardButton extends State<DashboardButton>{
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {
-        
         setState(() {
           _color = Colors.blue[800];
         },),
@@ -42,10 +40,7 @@ class _DashboardButton extends State<DashboardButton>{
         }), 
 
         onTap()
-        // if (buttonName == 'Donate Now'){
-        //   Navigator.push(context, MaterialPageRoute(builder: ((context) =>  DonatePage()),),)
-        // }
-      
+
       },
       child: Container(
         alignment: Alignment.topLeft,

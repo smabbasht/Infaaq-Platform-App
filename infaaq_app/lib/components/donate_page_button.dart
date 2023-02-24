@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DonateButton extends StatelessWidget {
   
   final String headingText;
   final String subText;
+  final void Function() onTap;
 
-  DonateButton({super.key, required this.headingText, required this.subText});
+  const DonateButton({super.key, required this.headingText, required this.subText, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,7 @@ class DonateButton extends StatelessWidget {
       height: 100.0,
       width: MediaQuery.of(context).size.width - 30,
       child: ElevatedButton(
-        onPressed: () {
-          
-        },
+        onPressed: onTap,
         style: ButtonStyle(
           shape: MaterialStateProperty.all(
             const RoundedRectangleBorder(

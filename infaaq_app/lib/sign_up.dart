@@ -1,14 +1,14 @@
 
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'components/text_field.dart';
 import 'components/my_button.dart';
-import 'package:image_picker/image_picker.dart';
 import 'components/circle_image_picker.dart';
 
 class SignUp extends StatelessWidget{
+
+  SignUp({super.key});
 
 final TextEditingController _nameController = TextEditingController();
 final TextEditingController _emailController = TextEditingController();
@@ -69,7 +69,7 @@ Widget build(BuildContext context){
         ),
         const SizedBox(height: 30.0,),
 
-        CircleImagePicker(),
+        const CircleImagePicker(),
 
         const SizedBox(height: 20.0,),
 

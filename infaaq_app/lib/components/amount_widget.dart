@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 
 class AmountWidget extends StatefulWidget {
+
+  const AmountWidget({super.key});
   @override
-  _AmountWidgetState createState() => _AmountWidgetState();
+  State<AmountWidget> createState() => _AmountWidgetState();
 }
 
 class _AmountWidgetState extends State<AmountWidget> {

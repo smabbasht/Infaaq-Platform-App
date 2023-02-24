@@ -1,15 +1,15 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:infaaq_app/components/my_drawer_header.dart';
 import 'components/top_bar.dart';
 import 'components/amount_widget.dart';
 import 'components/dashboard_button.dart';
-import 'donate_page.dart';
+import 'options_donation.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
   @override
-  _Dashboard createState() => _Dashboard();
+  State<Dashboard> createState() => _Dashboard();
 }
 
 class _Dashboard extends State<Dashboard> {
@@ -20,7 +20,7 @@ class _Dashboard extends State<Dashboard> {
     return Scaffold(
         drawer: Drawer(
             child: Column(
-          children: [
+          children:const  [
             MyHeaderDrawer(),
           ],
         )),
@@ -50,9 +50,9 @@ class _Dashboard extends State<Dashboard> {
                   const SizedBox(
                     height: 25.0,
                   ),
-                  AmountWidget(),
+                  const AmountWidget(),
                   const SizedBox(
-                    height: 30.0,
+                    height: 50.0,
                   ),
                   // Container(
                   //     alignment: Alignment.center,
@@ -74,7 +74,7 @@ class _Dashboard extends State<Dashboard> {
                                 imagePath: 'assets/images/donate_now.png',
                                 buttonName: 'Donate Now',
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: ((context) =>  DonatePage()),),);
+                                  Navigator.push(context, MaterialPageRoute(builder: ((context) =>  const OptionsDonatePage()),),);
                                 },
                               ),
                               DashboardButton(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infaaq_app/components/my_drawer_header.dart';
 
 class TopBar extends StatelessWidget{
 
@@ -37,10 +36,12 @@ Widget build (BuildContext context){
                   ),
                   child:  CircleAvatar(
                     child: Container(
+                        width: 50,
+                        height: 50,
                         decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('assets/images/profile_pic.jpg'),
+                          image: AssetImage('assets/images/profile_pic.jpg',),
                       ),
                     ),
                   ), 
@@ -57,7 +58,7 @@ Widget build (BuildContext context){
           ],
         ),
         const SizedBox(height: 15.0,),
-        Container(
+        SizedBox(
           height: 50,
           child: TextField(
             decoration: InputDecoration(
