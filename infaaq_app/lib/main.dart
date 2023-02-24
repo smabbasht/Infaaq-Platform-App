@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'splash_screen.dart';
+
 Future main()async{
   WidgetsFlutterBinding.ensureInitialized();
   try{

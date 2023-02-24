@@ -6,8 +6,8 @@ import 'components/square_tile.dart';
 import 'dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'firebase_authentication_setup.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 class LoginPage extends StatelessWidget {
   
   LoginPage({super.key});
@@ -17,7 +17,14 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    void signUserIn() async {
+    Future signUserIn() async {
+      
+      showDialog(context: context, 
+      builder: (context){
+        return const Center(child: CircularProgressIndicator());
+      }
+      );
+      
       try{
         final FirebaseAuth auth = FirebaseAuth.instance;
         await auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).then((value) => {
@@ -25,9 +32,9 @@ class LoginPage extends StatelessWidget {
         });
       } on FirebaseAuthException catch(e) {
         // print(e.code);
+        Navigator.of(context).pop();
         Fluttertoast.showToast(msg: e.code);
       } 
-
     }
 
     return Scaffold(
@@ -46,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(0),
                       height: 150.0,
-                      width: 150.0,
+                      width: 300.0,
                       child: Image.asset('assets/images/infaaq_logo.png')),
 
                   //welcome back, you've been missed

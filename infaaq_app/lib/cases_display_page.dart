@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CaseDisplayPage extends StatelessWidget{
 
 final int index;
-List indexCategory = ['Education','Medical','House','Food','Loan Repayment','Religious'];
+final List indexCategory = ['Education','Medical','House','Food','Loan Repayment','Religious'];
 
 CaseDisplayPage({super.key, required this.index});
 

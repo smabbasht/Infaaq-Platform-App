@@ -4,9 +4,9 @@
 import "package:flutter/material.dart";
 
 class CaseBox extends StatelessWidget{
-  String description, title;
-  int amount;
- CaseBox({super.key,this.description = "null", this.title = "null", this.amount = 0});
+  final String description, title;
+  final int amount;
+ const CaseBox({super.key, this.description = "null", this.title = "null", this.amount = 0});
 @override
 Widget build(BuildContext context){
   return Column( 
