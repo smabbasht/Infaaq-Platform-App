@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 
 class MyHeaderDrawer extends StatefulWidget{
 
-  const MyHeaderDrawer({super.key});
-
+  // final String name;
+  // String imageURL;
+  MyHeaderDrawer({super.key, this.imageURL = 'null', required this.name,this.email = 'mm06369@st.habib.edu.pk'});
+  String imageURL;
+  final String name;
+  String email;
   @override
-  State<MyHeaderDrawer> createState() => _MyHeaderDrawerState();
+  State<MyHeaderDrawer> createState() => _MyHeaderDrawerState(imageURL: imageURL, name:name, email: email);
 }
 
 class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
+  
+  // final String name;
+  String imageURL;
+  final String name;
+  String email;
+
+  _MyHeaderDrawerState({this.imageURL = '0', required this.name, this.email = 'mm06369@st.habib.edu.pk' });
+  
   @override
   Widget build(BuildContext context){
     return SafeArea(
@@ -25,17 +37,17 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
                   height: 70,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage('assets/images/profile_pic.jpg'),
+                      image: NetworkImage(imageURL),
                     ),
                     ),
                   ),
                   
-                  const Text("Muhammad Murtaza", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+                  Text(name, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
                   
-                  Text('mm06369@st.habib.edu.pk', style: TextStyle(color: Colors.grey[200]),)
+                  Text(email, style: TextStyle(color: Colors.grey[200]),)
                 
                 ]),
             ),

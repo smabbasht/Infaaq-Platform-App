@@ -5,36 +5,84 @@ import 'components/top_bar.dart';
 import 'components/amount_widget.dart';
 import 'components/dashboard_button.dart';
 import 'options_donation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  
+  Dashboard({super.key, required this.id});
+
+  String? id;
+  String? personName;
+
   @override
-  State<Dashboard> createState() => _Dashboard();
+  State<Dashboard> createState() => _Dashboard(id);
 }
 
 class _Dashboard extends State<Dashboard> {
+
+  _Dashboard(this.id);
+  String? id;
+  String personName = '0';
+  String imageURL = '0';
+  bool isloading = true;
+  late int amount;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final documentReference = FirebaseFirestore.instance.collection('users');
+  
+
+  Future getUserData() async {
+
+    Map<String,dynamic>? userData = {};
+    
+    try{
+      await FirebaseFirestore.instance.collection('users').doc(id).get().then((value){
+      userData = value.data();
+      personName = userData?['Name'];
+      imageURL = userData?['imageURL'];
+      amount = userData?['Amount Donated'];
+
+      
+      setState(() {
+        isloading = false;
+      },);
+
+    });
+    } on FirebaseException catch(e){
+      return;
+    }
+  }
+
 
   @override
+
+  void initState(){
+ 
+    getUserData();
+
+    super.initState();
+
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
             child: Column(
-          children:const  [
-            MyHeaderDrawer(),
+          children: [
+             MyHeaderDrawer(imageURL: imageURL,name:personName,),
           ],
         )),
         key: _scaffoldKey,
         backgroundColor: Colors.grey[200],
-        body: SafeArea(
+        body: isloading?Center(
+        child: CircularProgressIndicator(color: Colors.blue[900],),
+        ): SafeArea(
           child: ListView(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                //mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TopBar(
-                    scaffoldKey: _scaffoldKey,
+                    scaffoldKey: _scaffoldKey, name: personName, imageURL: imageURL,
                   ),
                   const SizedBox(
                     height: 20.0,
@@ -49,8 +97,8 @@ class _Dashboard extends State<Dashboard> {
                       )),
                   const SizedBox(
                     height: 25.0,
-                  ),
-                  const AmountWidget(),
+                  ),                  
+                  AmountWidget(amount: amount.toString(),),
                   const SizedBox(
                     height: 50.0,
                   ),

@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 
 class AmountWidget extends StatefulWidget {
 
-  const AmountWidget({super.key});
+  AmountWidget({super.key, this.amount = '0'});
   @override
-  State<AmountWidget> createState() => _AmountWidgetState();
+  State<AmountWidget> createState() => _AmountWidgetState(amount:amount);
+  String amount;
 }
 
 class _AmountWidgetState extends State<AmountWidget> {
   
+  _AmountWidgetState({this.amount = '0'});
+  String amount;
   bool _showWidget = true;
   bool show = false;
   Color? _color = Colors.blue[800];
@@ -28,7 +31,7 @@ class _AmountWidgetState extends State<AmountWidget> {
       width: 400,
       height: 50,
       child: GestureDetector(
-        child: Text(_showWidget ? "Show Amount" : "Rs.1000",
+        child: Text(_showWidget ? "Show Amount" : ('Rs. ' + amount),
               style: TextStyle(
                 color: _textColor,
                 fontWeight: FontWeight.w500,

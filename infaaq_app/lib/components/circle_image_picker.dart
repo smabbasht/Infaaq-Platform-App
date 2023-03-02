@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 //import 'dart:async';
-// import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:path_provider/path_provider.dart';
 
 class CircleImagePicker extends StatefulWidget {
-  
-  const CircleImagePicker({super.key});
+   
+  const CircleImagePicker({super.key, required this.callback}); 
   @override
-  State<CircleImagePicker> createState() => _ImagePicker();
+  State<CircleImagePicker> createState() => _ImagePicker(callback: callback);
+  final Function(String) callback;
 }
 
 class _ImagePicker extends State<CircleImagePicker> {
 
+  _ImagePicker({required this.callback});
+  final Function(String) callback;
   dynamic _image;
-
+  String imageURL = '';
+  
   Future getImage() async {
     
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -29,20 +33,21 @@ class _ImagePicker extends State<CircleImagePicker> {
       _image = imageTemp;
     });
     
-    // Reference referenceRoot = FirebaseStorage.instance.ref();
-    // Reference referenceDirImages = referenceRoot.child('images');
-    // Reference referenceImageToUpload = referenceDirImages.child('${image.path}');
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child('images');
+    Reference referenceImageToUpload = referenceDirImages.child('${image.path}');
     
-    // try{
+    try{
     
-    // referenceImageToUpload.putFile(File(image.path));
+    await referenceImageToUpload.putFile(File(image.path));
+    imageURL = await referenceImageToUpload.getDownloadURL();
+    
+    callback(imageURL);
+    // print(imageURL);
 
-    // } catch(e){
-     
-    //   return;
-    
-    // }
-    
+    } catch(e){ 
+      return;
+    }
 
   }
 
@@ -61,6 +66,7 @@ class _ImagePicker extends State<CircleImagePicker> {
           image: _image != null ? FileImage(_image) as ImageProvider : const AssetImage('assets/images/profile_avatar.png',),
       ),
     ),
+    // child: const Icon(Icons.camera_alt),
       ),
     );
   }

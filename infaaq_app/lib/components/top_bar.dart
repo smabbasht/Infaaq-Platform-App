@@ -5,7 +5,10 @@ class TopBar extends StatelessWidget{
 
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const TopBar({super.key, required this.scaffoldKey});
+  TopBar({super.key, required this.scaffoldKey, this.name = 'null', this.imageURL = 'null'});
+
+  String name;
+  String imageURL; 
 
 @override
 Widget build (BuildContext context){
@@ -38,10 +41,10 @@ Widget build (BuildContext context){
                     child: Container(
                         width: 50,
                         height: 50,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('assets/images/profile_pic.jpg',),
+                          image: NetworkImage(imageURL)
                       ),
                     ),
                   ), 
@@ -50,7 +53,7 @@ Widget build (BuildContext context){
 
                 const SizedBox(width: 10.0,),
 
-                const Text('Hi, Muhammad Murtaza', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 19.0)),
+                Text('Hi, ' + name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 19.0)),
                 
               ],
             ),
