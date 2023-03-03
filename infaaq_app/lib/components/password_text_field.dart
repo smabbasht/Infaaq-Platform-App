@@ -17,22 +17,26 @@ class PasswordTextField extends StatefulWidget{
     });
 
 @override
-  _PasswordTextFieldState createState() => _PasswordTextFieldState(fieldName: fieldName, controller: controller, obscureText: obscureText);
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
 
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField>{
 
+  late final String fieldName;
+  late final TextEditingController controller;
+  late final bool obscureText;
 
-  final String fieldName;
-  final TextEditingController controller;
-  bool obscureText;
+  _PasswordTextFieldState();
 
-  _PasswordTextFieldState({ 
-    required this.fieldName,
-    required this.controller,
-    required this.obscureText
-    });
+@override
+void initState(){
+  fieldName = widget.fieldName;
+  controller = widget.controller;
+  obscureText = widget.obscureText;
+
+  super.initState();  
+}
 
 @override
 Widget build(BuildContext context){

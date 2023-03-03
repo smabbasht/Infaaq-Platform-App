@@ -10,23 +10,21 @@ class CircleImagePicker extends StatefulWidget {
    
   const CircleImagePicker({super.key, required this.callback}); 
   @override
-  State<CircleImagePicker> createState() => _ImagePicker(callback: callback);
+  State<CircleImagePicker> createState() => _ImagePicker();
   final Function(String) callback;
 }
 
 class _ImagePicker extends State<CircleImagePicker> {
 
-  _ImagePicker({required this.callback});
-  final Function(String) callback;
+  _ImagePicker();
+  late Function(String) callback;
   dynamic _image;
-  String imageURL = '';
+  String imageURL = 'NULL';
   
   Future getImage() async {
     
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    
     if (image == null) return;
-
     final imageTemp = File(image.path);
 
     setState(() {
@@ -43,15 +41,20 @@ class _ImagePicker extends State<CircleImagePicker> {
     imageURL = await referenceImageToUpload.getDownloadURL();
     
     callback(imageURL);
-    // print(imageURL);
 
     } catch(e){ 
       return;
     }
-
   }
 
   @override
+
+  void initState(){
+    super.initState();
+    callback = widget.callback;
+  }
+
+@override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){

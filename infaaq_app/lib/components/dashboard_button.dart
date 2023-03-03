@@ -2,28 +2,39 @@ import 'package:flutter/material.dart';
 
 class DashboardButton extends StatefulWidget{
   
-  @override
   final String buttonName;
   final String imagePath;
   final void Function() onTap;
   
   const DashboardButton({super.key, required this.buttonName, required this.imagePath, required this.onTap});
   
-  State<DashboardButton> createState() => _DashboardButton(buttonName: buttonName, imagePath: imagePath, onTap: onTap);
+  @override
+  State<DashboardButton> createState() => _DashboardButton();
 
 }
 
 class _DashboardButton extends State<DashboardButton>{
   
-  final String buttonName;
-  final String imagePath;
+  late String buttonName;
+  late String imagePath;
 
-  final void Function() onTap;
+  late void Function() onTap;
   
   Color? _color = Colors.blue[200];
-  _DashboardButton({required this.buttonName, required this.imagePath, required this.onTap});
+  _DashboardButton();
   
   @override
+
+  void initState(){
+
+    buttonName = widget.buttonName;
+    imagePath = widget.imagePath;
+    onTap = widget.onTap;
+
+    super.initState();
+  }
+
+@override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {

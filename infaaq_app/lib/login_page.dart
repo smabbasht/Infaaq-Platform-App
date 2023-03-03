@@ -6,7 +6,7 @@ import 'components/square_tile.dart';
 import 'dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'components/password_textField.dart';
+import 'components/password_text_field.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -17,6 +17,11 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    void clearController(){
+      _emailController.text = '';
+      _passwordController.text = '';
+    }
     
     Future signUserIn() async {
       
@@ -31,6 +36,7 @@ class LoginPage extends StatelessWidget {
         await auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).then((value) => {
           Navigator.push(context, MaterialPageRoute(builder: ((context) =>  Dashboard(id: value.user?.uid)),),)
         });
+        clearController();
       } on FirebaseAuthException catch(e) {
         Navigator.of(context).pop();
         Fluttertoast.showToast(msg: e.code);
@@ -179,7 +185,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => SignUp()),
+                            builder: ((context) => const SignUp()),
                           ),
                         );
                       },

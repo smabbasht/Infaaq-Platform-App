@@ -8,7 +8,7 @@ class CategoriesPage extends StatelessWidget {
 
   CategoriesPage({super.key});
   
-  List indexCategory = ['Education','Medical','House','Food','Loan Repayment','Religious'];
+  final List indexCategory = ['Education','Medical','House','Food','Loan Repayment','Religious'];
 
   @override
   Widget build(BuildContext context) {

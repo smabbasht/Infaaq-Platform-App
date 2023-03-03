@@ -4,23 +4,33 @@ class MyHeaderDrawer extends StatefulWidget{
 
   // final String name;
   // String imageURL;
-  MyHeaderDrawer({super.key, this.imageURL = 'null', required this.name,this.email = 'mm06369@st.habib.edu.pk'});
-  String imageURL;
+  const MyHeaderDrawer({super.key, required this.imageURL, required this.name, required this.email});
   final String name;
-  String email;
+  final String email;
+  final String imageURL;
   @override
-  State<MyHeaderDrawer> createState() => _MyHeaderDrawerState(imageURL: imageURL, name:name, email: email);
+  State<MyHeaderDrawer> createState() => _MyHeaderDrawerState();
 }
 
 class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
   
   // final String name;
-  String imageURL;
-  final String name;
-  String email;
+  late String imageURL;
+  late String name;
+  late String email;
 
-  _MyHeaderDrawerState({this.imageURL = '0', required this.name, this.email = 'mm06369@st.habib.edu.pk' });
+  _MyHeaderDrawerState();
   
+  @override
+
+  void initState(){
+    imageURL = widget.imageURL;
+    name = widget.name;
+    email = widget.email;
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context){
     return SafeArea(
@@ -40,12 +50,12 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: NetworkImage(imageURL),
+                      image: imageURL == 'NULL'? const AssetImage('assets/images/profile_avatar.png') as ImageProvider: NetworkImage(imageURL),
                     ),
                     ),
                   ),
                   
-                  Text(name, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+                  Text(name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
                   
                   Text(email, style: TextStyle(color: Colors.grey[200]),)
                 

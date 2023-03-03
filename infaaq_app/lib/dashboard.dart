@@ -9,21 +9,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Dashboard extends StatefulWidget {
   
-  Dashboard({super.key, required this.id});
+  const Dashboard({super.key, required this.id});
 
-  String? id;
-  String? personName;
+  final String? id;
+  // String? personName;
 
   @override
-  State<Dashboard> createState() => _Dashboard(id);
+  State<Dashboard> createState() => _Dashboard();
 }
 
 class _Dashboard extends State<Dashboard> {
 
-  _Dashboard(this.id);
+  _Dashboard();
   String? id;
-  String personName = '0';
-  String imageURL = '0';
+  String personName = 'NULL';
+  String imageURL = 'NULL';
+  String email = 'NULL';
   bool isloading = true;
   late int amount;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -40,6 +41,7 @@ class _Dashboard extends State<Dashboard> {
       personName = userData?['Name'];
       imageURL = userData?['imageURL'];
       amount = userData?['Amount Donated'];
+      email = userData?['Email'];
 
       
       setState(() {
@@ -57,18 +59,20 @@ class _Dashboard extends State<Dashboard> {
 
   void initState(){
  
+    id = widget.id;
     getUserData();
 
     super.initState();
 
   }
 
+@override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
             child: Column(
           children: [
-             MyHeaderDrawer(imageURL: imageURL,name:personName,),
+             MyHeaderDrawer(imageURL: imageURL, name:personName, email: email,),
           ],
         )),
         key: _scaffoldKey,

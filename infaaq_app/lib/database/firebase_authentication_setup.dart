@@ -23,7 +23,7 @@ class FirebaseAuthentication{
       } catch(e){
         
         errorMessage = e;
-        print(e);
+        // print(e);
         return Future.value(false);
 
       }

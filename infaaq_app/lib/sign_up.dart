@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'components/text_field.dart';
 import 'components/my_button.dart';
 import 'components/circle_image_picker.dart';
-import 'components/password_textField.dart';
+import 'components/password_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
 class SignUp extends StatefulWidget{
 
+const SignUp({super.key});
 @override
-_SignUpState createState() => _SignUpState();
+State<SignUp> createState() => _SignUpState();
 
 }
 
@@ -25,7 +26,7 @@ final TextEditingController _nameController = TextEditingController();
 final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
 final TextEditingController _confirmPasswordController = TextEditingController();
-late String imageURL;
+String imageURL = 'NULL';
 
 //ImagePicker _picker = ImagePicker();
 
@@ -33,24 +34,42 @@ void imageURLUpdated(String url){
   imageURL = url;
 }
 
-void SignUp(String name, String email, String password, String confirmPassword, String imageURL){
-  
+void clearController(){
+  _nameController.text = '';
+  _emailController.text = '';
+  _passwordController.text = '';
+  _confirmPasswordController.text = '';
+}
+
+void signUp(String name, String email, String password, String confirmPassword, String imageURL) async {
+    
+  showDialog(context: context, 
+      builder: (context){
+        return const Center(child: CircularProgressIndicator());
+      }
+      );
+
   Map<String, dynamic> userData = {
     'Name' : name, 
     'Amount Donated' : 0,
-    'imageURL':imageURL
+    'imageURL':imageURL,
+    'Email': _emailController.text
   };
 
-  final auth = FirebaseAuth.instance;
-
   try{
-    auth.createUserWithEmailAndPassword(email: email, password: password).then((value){
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.createUserWithEmailAndPassword(email: email, password: password).then((value){
         final reference = FirebaseFirestore.instance.collection('users').doc(value.user?.uid);
         reference.set(userData);
     });
+    Navigator.of(context).pop();
+    Fluttertoast.showToast(msg:'Account Created');
+    clearController();
   } on FirebaseAuthException catch(e){
+    Navigator.of(context).pop();
     Fluttertoast.showToast(msg: e.code);
   }
+  
 }
 
 @override
@@ -118,7 +137,7 @@ Widget build(BuildContext context){
         MyButton(onTap: (){
           // Navigator.of(context).pop();
           // print(imageURL);
-          SignUp(_nameController.text, _emailController.text, _passwordController.text, _confirmPasswordController.text, imageURL);
+          signUp(_nameController.text, _emailController.text, _passwordController.text, _confirmPasswordController.text, imageURL);
         }, btnName: 'Create'),
         const SizedBox(height: 5.0),
 

@@ -5,11 +5,12 @@ class TopBar extends StatelessWidget{
 
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  TopBar({super.key, required this.scaffoldKey, this.name = 'null', this.imageURL = 'null'});
+  const TopBar({super.key, required this.scaffoldKey, required this.name, required this.imageURL});
 
-  String name;
-  String imageURL; 
+  final String name;
+  final String imageURL; 
 
+  
 @override
 Widget build (BuildContext context){
   return Container(
@@ -44,7 +45,7 @@ Widget build (BuildContext context){
                         decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage(imageURL)
+                          image: (imageURL == 'NULL') ? const AssetImage('assets/images/profile_avatar.png') as ImageProvider: NetworkImage(imageURL),
                       ),
                     ),
                   ), 
@@ -53,7 +54,7 @@ Widget build (BuildContext context){
 
                 const SizedBox(width: 10.0,),
 
-                Text('Hi, ' + name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 19.0)),
+                Text('Hi, $name' , style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 19.0)),
                 
               ],
             ),
@@ -64,6 +65,7 @@ Widget build (BuildContext context){
         SizedBox(
           height: 50,
           child: TextField(
+            focusNode: FocusNode(),
             decoration: InputDecoration(
               hintText: 'Search',
               fillColor: Colors.white,
