@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-//import 'dart:async';
 import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class CircleImagePicker extends StatefulWidget {
    
@@ -22,7 +20,7 @@ class _ImagePicker extends State<CircleImagePicker> {
   String imageURL = 'NULL';
   
   Future getImage() async {
-    
+
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image == null) return;
     final imageTemp = File(image.path);
@@ -36,19 +34,15 @@ class _ImagePicker extends State<CircleImagePicker> {
     Reference referenceImageToUpload = referenceDirImages.child('${image.path}');
     
     try{
-    
     await referenceImageToUpload.putFile(File(image.path));
     imageURL = await referenceImageToUpload.getDownloadURL();
-    
     callback(imageURL);
-
     } catch(e){ 
       return;
     }
   }
 
   @override
-
   void initState(){
     super.initState();
     callback = widget.callback;
@@ -69,7 +63,6 @@ class _ImagePicker extends State<CircleImagePicker> {
           image: _image != null ? FileImage(_image) as ImageProvider : const AssetImage('assets/images/profile_avatar.png',),
       ),
     ),
-    // child: const Icon(Icons.camera_alt),
       ),
     );
   }

@@ -24,10 +24,8 @@ Widget build (BuildContext context){
               ),
             ),
             backgroundColor: MaterialStateProperty.all(Colors.grey[100]),
-            //backgroundColor: MaterialStateProperty.all(Colors.transparent),
           ),
           child: Container(
-            //width: MediaQuery.of(context).size.width - 30,
             alignment: Alignment.center,
             child: Image.asset(imagePath)
             ),

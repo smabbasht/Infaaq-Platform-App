@@ -5,7 +5,6 @@ class DashboardButton extends StatefulWidget{
   final String buttonName;
   final String imagePath;
   final void Function() onTap;
-  
   const DashboardButton({super.key, required this.buttonName, required this.imagePath, required this.onTap});
   
   @override
@@ -17,20 +16,16 @@ class _DashboardButton extends State<DashboardButton>{
   
   late String buttonName;
   late String imagePath;
-
   late void Function() onTap;
-  
   Color? _color = Colors.blue[200];
   _DashboardButton();
   
   @override
 
   void initState(){
-
     buttonName = widget.buttonName;
     imagePath = widget.imagePath;
     onTap = widget.onTap;
-
     super.initState();
   }
 
@@ -41,15 +36,12 @@ class _DashboardButton extends State<DashboardButton>{
         setState(() {
           _color = Colors.blue[800];
         },),
-
         Future.delayed(const Duration(milliseconds: 20),(){
           setState(() {
           _color = Colors.blue[200];
         },);
         }), 
-
         onTap()
-
       },
       child: Container(
         alignment: Alignment.topLeft,

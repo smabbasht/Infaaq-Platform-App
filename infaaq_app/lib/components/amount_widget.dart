@@ -66,17 +66,5 @@ class _AmountWidgetState extends State<AmountWidget> {
             },
       ),
     );
-        // _showWidget
-        //     ? Container(
-        //         width: double.infinity,
-        //         height: 100.0,
-        //         color: Colors.lightBlue,
-        //         child: const Center(
-        //           child: Text("Show Widget"),
-        //         ),
-        //       )
-        //     : Container(),
-      //],
-    //);
   }
 }

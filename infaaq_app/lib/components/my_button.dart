@@ -16,7 +16,6 @@ class MyButton extends StatelessWidget{
   
   final void Function() onTap;
   final String btnName; 
-  
   const MyButton({super.key, required this.onTap, required this.btnName});
 
 @override
@@ -24,14 +23,10 @@ Widget build(BuildContext context){
   return GestureDetector(
     onTap: (() => {
       onTap()
-      // if (btnName == 'Sign In'){
-      // Navigator.push(context, MaterialPageRoute(builder: ((context) =>  Dashboard()),),)
-      // }
     }),
     child: Container(
       height: 50,
       width: MediaQuery.of(context).size.width - 30,
-      //padding: const EdgeInsets.all(25),
       margin: const EdgeInsets.symmetric(horizontal: 25.0),
       decoration: BoxDecoration(
         color: '#13274F'.toColor(),

@@ -14,11 +14,9 @@ class MyHeaderDrawer extends StatefulWidget{
 
 class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
   
-  // final String name;
-  late String imageURL;
-  late String name;
-  late String email;
-
+  late final String imageURL;
+  late final String name;
+  late final String email;
   _MyHeaderDrawerState();
   
   @override

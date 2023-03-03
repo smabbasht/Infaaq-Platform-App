@@ -4,9 +4,11 @@
 import "package:flutter/material.dart";
 
 class CaseBox extends StatelessWidget{
+
   final String description, title;
   final int amount;
- const CaseBox({super.key, this.description = "null", this.title = "null", this.amount = 0});
+  const CaseBox({super.key, this.description = "null", this.title = "null", this.amount = 0});
+
 @override
 Widget build(BuildContext context){
   return Column( 
@@ -27,13 +29,11 @@ Widget build(BuildContext context){
             fontSize: 25.0),
             textAlign: TextAlign.left,
             ),
-            //const SizedBox(height: 20.0,),
             Text("Description: $description",
             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500,
             fontSize: 20.0),
             textAlign: TextAlign.left,
             ),
-            //const SizedBox(height: 25.0,),
             Text("Amount Required: Rs.$amount",
             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500,fontSize: 18.0
             ),

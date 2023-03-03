@@ -5,7 +5,6 @@ class DonateButton extends StatelessWidget {
   final String headingText;
   final String subText;
   final void Function() onTap;
-
   const DonateButton({super.key, required this.headingText, required this.subText, required this.onTap});
 
   @override
@@ -22,10 +21,8 @@ class DonateButton extends StatelessWidget {
             ),
           ),
           backgroundColor: MaterialStateProperty.all(Colors.blue[500]),
-          //backgroundColor: MaterialStateProperty.all(Colors.transparent),
         ),
         child: Container(
-          //width: MediaQuery.of(context).size.width - 30,
           alignment: Alignment.center,
           child: Container(
             padding: const EdgeInsets.only(left: 5.0),
@@ -41,16 +38,13 @@ class DonateButton extends StatelessWidget {
                         fontSize: 24.0,
                         fontWeight: FontWeight.w500),
                 ),
-                 
                 const SizedBox(height: 10.0,),
                  Text(
                     subText,
                     style: const TextStyle(
                       fontSize: 16,
-                      
                     ),
                   ),
-                
               ],
             ),
           ),
