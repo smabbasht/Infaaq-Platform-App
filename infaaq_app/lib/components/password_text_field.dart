@@ -18,7 +18,7 @@ class PasswordTextField extends StatefulWidget {
 class _PasswordTextFieldState extends State<PasswordTextField> {
   late final String fieldName;
   late final TextEditingController controller;
-  late final bool obscureText;
+  late bool obscureText;
 
   _PasswordTextFieldState();
 

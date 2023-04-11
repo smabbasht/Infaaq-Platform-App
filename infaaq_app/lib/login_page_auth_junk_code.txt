@@ -1,0 +1,51 @@
+// void clearController() {
+    //   _emailController.text = '';
+    //   _passwordController.text = '';
+    // }
+
+    // Future signUserIn() async {
+        
+      //   showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return const Center(child: CircularProgressIndicator());
+      //     });
+      
+      // final String? userID = await auth.signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+      // bool error = auth.showError();
+      // if (error){
+      //   String msg = 'Error';
+      //   if (userID != null){
+      //     msg = userID;
+      //   }
+      //   Navigator.of(context).pop();
+      //   Fluttertoast.showToast(msg: msg);
+      //   auth.resetError();
+      // }
+      // else{
+      // clearController();
+      // Navigator.push(context,MaterialPageRoute(builder: ((context) => Dashboard(id: userID)),));
+      
+      // }
+    // }
+
+
+
+    // Future signUserIn() async {
+    //   showDialog(
+    //       context: context,
+    //       builder: (context) {
+    //         return const Center(child: CircularProgressIndicator());
+    //       });
+
+    //   try {
+    //     final FirebaseAuth auth = FirebaseAuth.instance;
+    //     await auth.signInWithEmailAndPassword(email: _emailController.text,password: _passwordController.text).then((value) => {
+    //       Navigator.push(context,MaterialPageRoute(builder: ((context) => Dashboard(id: value.user?.uid)),),)});
+    //       clearController();
+      
+    //     } on FirebaseAuthException catch (e) {
+    //     Navigator.of(context).pop();
+    //     Fluttertoast.showToast(msg: e.code);
+    //   }
+    // }

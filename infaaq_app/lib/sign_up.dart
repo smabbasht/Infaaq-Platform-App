@@ -42,7 +42,7 @@ void clearController(){
 }
 
 void signUp(String name, String email, String password, String confirmPassword, String imageURL) async {
-    
+
   showDialog(context: context, 
       builder: (context){
         return const Center(child: CircularProgressIndicator());
@@ -69,7 +69,7 @@ void signUp(String name, String email, String password, String confirmPassword, 
     Navigator.of(context).pop();
     Fluttertoast.showToast(msg: e.code);
   }
-  
+
 }
 
 @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'database/auth.dart';
 
 Future main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  AnimatedSplashScreen(splash: Image.asset('assets/images/infaaq_logo.png', width: 300, height: 300,), nextScreen: LoginPage(), duration: 800, splashIconSize: 200,),
+      home:  AnimatedSplashScreen(splash: Image.asset('assets/images/infaaq_logo.png', width: 300, height: 300,), nextScreen: LoginPage(auth: Auth(),), duration: 800, splashIconSize: 200,),
     );
   }
 }

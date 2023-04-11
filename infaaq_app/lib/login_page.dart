@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:infaaq_app/database/auth.dart';
 import 'package:infaaq_app/sign_up.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'dashboard.dart';
 import 'components/text_field.dart';
 import 'components/my_button.dart';
 import 'components/square_tile.dart';
-import 'dashboard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'components/password_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginPage({super.key, required this.auth});
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthBase auth;
 
   @override
   Widget build(BuildContext context) {
+
     void clearController() {
       _emailController.text = '';
       _passwordController.text = '';
     }
-
-    Future signUserIn() async {
+    
+    void signIn()async {
       showDialog(
           context: context,
           builder: (context) {
@@ -29,25 +32,16 @@ class LoginPage extends StatelessWidget {
 
       try {
         final FirebaseAuth auth = FirebaseAuth.instance;
-        await auth
-            .signInWithEmailAndPassword(
-                email: _emailController.text,
-                password: _passwordController.text)
-            .then((value) => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: ((context) => Dashboard(id: value.user?.uid)),
-                    ),
-                  )
-                });
-        clearController();
-      } on FirebaseAuthException catch (e) {
+        await auth.signInWithEmailAndPassword(email: _emailController.text,password: _passwordController.text).then((value) => {
+          Navigator.push(context,MaterialPageRoute(builder: ((context) => Dashboard(id: value.user?.uid)),),)});
+          clearController();
+      
+        } on FirebaseAuthException catch (e) {
         Navigator.of(context).pop();
         Fluttertoast.showToast(msg: e.code);
       }
     }
-
+    
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: ListView(
@@ -130,7 +124,7 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 MyButton(
-                  onTap: signUserIn,
+                  onTap: signIn,
                   btnName: 'Sign In',
                 ),
 
